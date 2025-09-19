@@ -61,7 +61,10 @@ describe('AuthService', () => {
       const result = service.login(user);
 
       expect(result).toEqual({ access_token: 'mock-jwt-token' });
-      expect(jwtService.sign).toHaveBeenCalledWith({ sub: 1, email: 'test@test.com' });
+      expect(jwtService.sign).toHaveBeenCalledWith({
+        sub: 1,
+        email: 'test@test.com',
+      });
     });
   });
 });

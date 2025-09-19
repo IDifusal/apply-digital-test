@@ -78,7 +78,7 @@ export class ReportsService {
       count: string;
       avgPrice: string | null;
     }
-    const rows = await qb.getRawMany() as RawResult[];
+    const rows = await qb.getRawMany();
     return rows.map((r) => ({
       category: r.category,
       count: Number(r.count),

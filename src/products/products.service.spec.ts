@@ -91,7 +91,7 @@ describe('ProductsService', () => {
 
       expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
         'LOWER(p.name) LIKE LOWER(:name)',
-        { name: '%test%' }
+        { name: '%test%' },
       );
     });
 
@@ -112,11 +112,10 @@ describe('ProductsService', () => {
 
       expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
         'p.category = :category',
-        { category: 'electronics' }
+        { category: 'electronics' },
       );
     });
   });
-
 
   describe('upsertFromContentful', () => {
     it('should create new product when not exists', async () => {
@@ -164,7 +163,10 @@ describe('ProductsService', () => {
 
       const result = await service.upsertFromContentful(updateData);
 
-      expect(repository.merge).toHaveBeenCalledWith(existingProduct, updateData);
+      expect(repository.merge).toHaveBeenCalledWith(
+        existingProduct,
+        updateData,
+      );
       expect(repository.save).toHaveBeenCalledWith(mergedProduct);
       expect(result).toEqual(mergedProduct);
     });

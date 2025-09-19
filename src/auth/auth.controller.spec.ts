@@ -47,7 +47,10 @@ describe('AuthController', () => {
       const result = controller.login(loginDto);
 
       expect(result).toEqual(mockToken);
-      expect(authService.validateUser).toHaveBeenCalledWith('test@test.com', 'test123');
+      expect(authService.validateUser).toHaveBeenCalledWith(
+        'test@test.com',
+        'test123',
+      );
       expect(authService.login).toHaveBeenCalledWith(mockUser);
     });
 
@@ -65,7 +68,10 @@ describe('AuthController', () => {
         controller.login(loginDto);
       }).toThrow(UnauthorizedException);
 
-      expect(authService.validateUser).toHaveBeenCalledWith('wrong@email.com', 'wrongpass');
+      expect(authService.validateUser).toHaveBeenCalledWith(
+        'wrong@email.com',
+        'wrongpass',
+      );
     });
   });
 });
