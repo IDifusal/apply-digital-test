@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   });
@@ -27,7 +27,7 @@ async function bootstrap() {
   );
 
   // Swagger configuration
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+
   const config = new (DocumentBuilder as any)()
     .setTitle('Products API')
     .setDescription(
@@ -37,9 +37,8 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const document = (SwaggerModule as any).createDocument(app, config);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+
   (SwaggerModule as any).setup('/api/docs', app, document);
 
   // Use ConfigService to get port from configuration

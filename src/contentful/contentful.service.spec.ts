@@ -37,7 +37,13 @@ describe('ContentfulService', () => {
   describe('mapEntryToProduct', () => {
     it('should map contentful entry to product', () => {
       const mockEntry = {
-        sys: { id: 'cf-123' },
+        sys: {
+          id: 'cf-123',
+          type: 'Entry',
+          createdAt: '2023-01-01T00:00:00Z',
+          updatedAt: '2023-01-01T00:00:00Z',
+          revision: 1,
+        },
         fields: {
           name: { 'en-US': 'Test Product' },
           category: { 'en-US': 'Electronics' },
@@ -57,7 +63,13 @@ describe('ContentfulService', () => {
 
     it('should handle missing fields', () => {
       const mockEntry = {
-        sys: { id: 'cf-456' },
+        sys: {
+          id: 'cf-456',
+          type: 'Entry',
+          createdAt: '2023-01-01T00:00:00Z',
+          updatedAt: '2023-01-01T00:00:00Z',
+          revision: 1,
+        },
         fields: {},
       };
 
@@ -73,7 +85,13 @@ describe('ContentfulService', () => {
 
     it('should handle non-localized fields', () => {
       const mockEntry = {
-        sys: { id: 'cf-789' },
+        sys: {
+          id: 'cf-789',
+          type: 'Entry',
+          createdAt: '2023-01-01T00:00:00Z',
+          updatedAt: '2023-01-01T00:00:00Z',
+          revision: 1,
+        },
         fields: {
           name: 'Direct String',
           category: 'Direct Category',
@@ -96,11 +114,23 @@ describe('ContentfulService', () => {
     it('should sync products successfully', async () => {
       const mockItems = [
         {
-          sys: { id: 'cf-1' },
+          sys: {
+            id: 'cf-1',
+            type: 'Entry',
+            createdAt: '2023-01-01T00:00:00Z',
+            updatedAt: '2023-01-01T00:00:00Z',
+            revision: 1,
+          },
           fields: { name: { 'en-US': 'Product 1' } },
         },
         {
-          sys: { id: 'cf-2' },
+          sys: {
+            id: 'cf-2',
+            type: 'Entry',
+            createdAt: '2023-01-01T00:00:00Z',
+            updatedAt: '2023-01-01T00:00:00Z',
+            revision: 1,
+          },
           fields: { name: { 'en-US': 'Product 2' } },
         },
       ];
@@ -118,11 +148,22 @@ describe('ContentfulService', () => {
     it('should skip items without contentfulId', async () => {
       const mockItems = [
         {
-          sys: { id: 'cf-1' },
+          sys: {
+            id: 'cf-1',
+            type: 'Entry',
+            createdAt: '2023-01-01T00:00:00Z',
+            updatedAt: '2023-01-01T00:00:00Z',
+            revision: 1,
+          },
           fields: { name: { 'en-US': 'Product 1' } },
         },
         {
-          sys: {}, // Missing id
+          sys: {
+            type: 'Entry',
+            createdAt: '2023-01-01T00:00:00Z',
+            updatedAt: '2023-01-01T00:00:00Z',
+            revision: 1,
+          }, // Missing id
           fields: { name: { 'en-US': 'Product 2' } },
         },
       ];
